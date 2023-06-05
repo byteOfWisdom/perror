@@ -30,11 +30,26 @@ class ErrVal:
         self.value = v
         self.error = abs(e)
 
+
+    def __eq__(self, other):
+        if type(other) in num_type:
+            return False #special case where we compare a value with an error to a float or int
+
+        return self.value == other.value and self.error == other.error
+
+
     def __gt__(self, other):
         if type(other) in num_type:
             other = ErrVal(other, 0)
 
         return self.value > other.value
+
+
+    def __lt__(self, other):
+        if type(other) in num_type:
+            other = ErrVal(other, 0)
+
+        return self.value < other.value
 
 
     def __add__(self, other):
