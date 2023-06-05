@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from math import sqrt, log10, log
-from numba import njit
+
 
 def sq(a):
     return a ** 2
