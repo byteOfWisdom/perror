@@ -6,16 +6,26 @@ def sq(a):
     return a ** 2
 
 
+#for quickly generating multiple ErrVal with the same error
 def const_err(e):
     return lambda v: make_errval(v, e)
 
 
+#just a helper function
 def make_errval(v, e):
     return ErrVal(v, e)
 
 
+# combines a list of values with a list of errors into a list of ErrVal
 def ezip(values, errors):
     return [ErrVal(values[i], errors[i]) for i in range(len(values))]
+
+
+#cause there's no magic method for log
+def elog(n):
+    v = log(n.value)
+    e = n.error / n.value
+    return ErrVal(v, e)
 
 
 num_type = [float, int]
