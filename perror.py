@@ -135,7 +135,15 @@ class ErrVal:
 
 
     def __float__(self):
-        return float(self.value)
+        err_magn = int(log10(self.error))
+        val_magn = int(log10(self.value))
+
+        if err_magn <= val_magn:
+            significant = - err_magn
+        else:
+            significant = 0
+
+        return float(round(self.value, significant))
 
 
     def __int__(self):
